@@ -349,13 +349,13 @@ class convert
                         }
                     }
                 }
-                if ($column["decimal"] && $unsigned) {
-                    $lines[] = "CHANGE `" . $column["name"] . "` `" . $column["name"] . "` decimal(" . ($column["length"] + $column["decimal"]) . ", " . $column["decimal"] . ") UNSIGNED
+                // if ($column["decimal"] && $unsigned) {
+                //     $lines[] = "CHANGE `" . $column["name"] . "` `" . $column["name"] . "` decimal(" . ($column["length"] + $column["decimal"]) . ", " . $column["decimal"] . ")
+                //       NULL DEFAULT '0'";
+                // } else {
+                $lines[] = "CHANGE `" . $column["name"] . "` `" . $column["name"] . "` " . $type . "(" . $column["length"] . ")" . ($unsigned ? " UNSIGNED" : "") . "
                       NULL DEFAULT '0'";
-                } else {
-                    $lines[] = "CHANGE `" . $column["name"] . "` `" . $column["name"] . "` " . $type . "(" . $column["length"] . ")" . ($unsigned ? " UNSIGNED" : "") . "
-                      NULL DEFAULT '0'";
-                }
+                // }
             }
         }
         if (count($lines)) {
